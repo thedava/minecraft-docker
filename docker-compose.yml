@@ -1,0 +1,26 @@
+version: '3.1'
+services:
+    mc:
+        image: itzg/minecraft-server
+        container_name: mc
+        ports:
+            - "25565:25565"
+        environment:
+            EULA: "TRUE"
+            VERSION: "LATEST"
+#            VERSION: "SNAPSHOT"
+            DIFFICULTY: "easy"
+            MAX_PLAYERS: 5
+            ANNOUNCE_PLAYER_ACHIEVEMENTS: "true"
+            MODE: "survival"
+            PVP: "false"
+            ONLINE_MODE: "true"
+            MEMORY: "1G"
+            INIT_MEMORY: "512M"
+            MAX_MEMORY: "4G"
+        volumes:
+            - "./data:/data"
+        tty: true
+        stdin_open: true
+#        restart: "no"
+        restart: "always"
