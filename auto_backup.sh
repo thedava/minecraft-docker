@@ -1,18 +1,38 @@
 #!/bin/bash
 
+default_mode="archive"
+
+if [[ -z "$1" ]]; then
+    mode=$default_mode
+else
+    if [[ $1 = "archive" ]]; then
+        mode="archive"
+    else
+        mode="folder"
+    fi
+fi
+
 now=$(date '+%Y-%m-%d_%H%M%S')
 
 echo "------ "$(date '+%Y-%m-%d %H:%M:%S')
 
+echo "Selected mode: $mode"
+echo ""
+
 echo "Starting backup..."
 ./backup.sh
-echo "Backup done"
 
-echo "Creating new folder for now"
-cp -r backups/_work "backups/$now"
-echo "Folder for now created"
+if [[ $mode = "archive" ]]; then
+    echo "Creating archive"
+    tar -cjf "backups/$now.tar.bz2" "backups/_work"
+else
+    echo "Creating folder"
+    cp -r "backups/_work" "backups/$now"
+fi
 
-echo "Cleanup old directories"
+echo "Cleanup old backups"
+find backups/*.bz2 -type f -ctime +3 -exec rm -rf {} \;
 find backups/20* -type d -ctime +3 -exec rm -rf {} \;
-echo "Cleanup done"
+echo ""
+echo "done"
 echo ""
