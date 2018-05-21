@@ -1,6 +1,7 @@
 #!/bin/bash
 
-rsync -av  \
+rsync -avE  \
+    --delete-after \
     --exclude='*.log' \
     --exclude='*.converted' \
     --exclude='*.gz' \
