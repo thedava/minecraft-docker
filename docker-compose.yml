@@ -12,7 +12,7 @@ services:
             DIFFICULTY: "easy"
             MAX_PLAYERS: 5
             ANNOUNCE_PLAYER_ACHIEVEMENTS: "true"
-            MODE: "survival"
+            MODE: "spectator"
             PVP: "false"
             ONLINE_MODE: "true"
             MEMORY: "1G"
