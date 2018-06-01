@@ -21,6 +21,16 @@ The backup mechanism will synchronize the server data folder with another folder
 ```
 
 
+## Crontab example
+
+Run a backup at 0:30, 6:30, 12:30, 18:30 and save the output to a log file. Also rotate that log file automatically
+
+```sh
+  # m h  dom mon dow   command
+  30 0,6,12,18 * * * cd ~/minecraft && savelog -q -n -c 3 backups/backups.log && ./auto_backup.sh >> backups/backups.log
+```
+
+
 ## Requirements
 
 - docker-compose (tested with version 1.17)
