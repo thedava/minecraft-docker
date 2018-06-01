@@ -24,8 +24,7 @@ echo "Starting backup..."
 
 if [[ $mode = "archive" ]]; then
     echo "Creating archive"
-    tar -cjf "backups/$now.tar" "backups/_work"
-    pbzip2 -9 -t "backups/$now.tar"
+    tar -I pbzip2 -cf "backups/$now.tar.bz2" "backups/_work"
 else
     echo "Creating folder"
     cp -r "backups/_work" "backups/$now"
