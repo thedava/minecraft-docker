@@ -6,4 +6,5 @@ rsync -avEh  \
     --exclude='*.converted' \
     --exclude='*.gz' \
     --exclude='core' \
+    --exclude='crash-*.txt' \
     "./data/" "./backups/_work"
