@@ -1,6 +1,6 @@
 # minecraft-docker
 
-A simple wrapper around [itzg/minecraft-server](https://github.com/itzg/dockerfiles) mainly used for hosting own minecraft instances of myself.
+A simple wrapper around [itzg/minecraft-server](https://github.com/itzg/dockerfiles) (See on [Docker Hub](https://hub.docker.com/r/itzg/minecraft-server/)) mainly used for hosting own minecraft instances of myself.
 
 Provides some basic features like a backup mechanism
 
