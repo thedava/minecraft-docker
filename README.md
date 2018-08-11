@@ -2,7 +2,10 @@
 
 A simple wrapper around [itzg/minecraft-server](https://github.com/itzg/dockerfiles) (See on [Docker Hub](https://hub.docker.com/r/itzg/minecraft-server/)) mainly used for hosting own minecraft instances of myself.
 
-Provides some basic features like a backup mechanism
+Provides some basic features like a backup mechanism.
+
+* Attach to container: `docker attach mc`
+* Detach from container: `Ctrl + P` `Ctrl + Q`
 
 
 ## Backup
