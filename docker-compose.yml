@@ -9,15 +9,15 @@ services:
             EULA: "TRUE"
             VERSION: "LATEST"
 #            VERSION: "SNAPSHOT"
-            DIFFICULTY: "easy"
+            DIFFICULTY: "normal"
             MAX_PLAYERS: 5
             ANNOUNCE_PLAYER_ACHIEVEMENTS: "true"
             MODE: "spectator"
             PVP: "false"
             ONLINE_MODE: "true"
             MEMORY: "1G"
-            INIT_MEMORY: "512M"
-            MAX_MEMORY: "4G"
+            INIT_MEMORY: "2G"
+            MAX_MEMORY: "6G"
         volumes:
             - "./data:/data"
         tty: true
