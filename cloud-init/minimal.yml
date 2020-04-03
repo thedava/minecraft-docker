@@ -1,0 +1,75 @@
+#cloud-config
+
+#
+# Example minimal cloud-init configuration for a new minecraft server instance
+#
+
+# Update apt repository and install updates
+package_update: true
+package_upgrade: true
+package_reboot_if_required: true
+
+# Add group docker
+groups:
+  - docker
+
+# Add user(s)
+users:
+  - default
+  - name: minecraft
+    groups: users, docker
+    shell: /bin/bash
+
+packages:
+  - apt-transport-https
+  - ca-certificates
+  - curl
+  - gnupg-agent
+  - software-properties-common
+  - git
+
+runcmd:
+  # Install docker
+  - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+  - add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+  - apt-get update -y
+  - apt-get -y install docker-ce docker-ce-cli containerd.io
+  - systemctl start docker
+  - systemctl enable docker
+
+  # Install docker-compose
+  - curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+  - chmod +x /usr/local/bin/docker-compose
+
+  # Enable color prompting
+  - sed -i "s/#force_color_prompt=yes/force_color_prompt=yes/g" /root/.bashrc
+  - cp /root/.bashrc /home/minecraft/.bashrc
+  - chown minecraft:minecraft /home/minecraft/.bashrc
+
+  # Checkout minecraft
+  - git clone https://github.com/thedava/minecraft-docker.git /home/minecraft/minecraft-docker
+  - mkdir /home/minecraft/minecraft-docker/data
+  - chown minecraft:minecraft -R /home/minecraft/minecraft-docker
+
+write_files:
+-   content: |
+        # bash_aliases
+
+        alias ll='ls -lah --group-directories-first'
+        alias dc='docker-compose'
+        alias apt-upgrade='apt-get update && apt-get upgrade --autoremove -y'
+    path: /root/.bash_aliases
+    owner: root:root
+    permissions: '0644'
+-   content: |
+        # bash_aliases
+
+        alias ll='ls -lah --group-directories-first'
+        alias dc='docker-compose'
+    path: /home/minecraft/.bash_aliases
+    owner: minecraft:minecraft
+    permissions: '0644'
+
+power_state:
+  mode: reboot
+  message: "Applying changes through reboot now"
