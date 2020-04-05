@@ -53,6 +53,14 @@ runcmd:
 
 write_files:
 -   content: |
+        # m h  dom mon dow    user         command
+
+        30 0,6,12,18 * * *    minecraft    cd /home/minecraft/minecraft-docker && ./auto_backup.sh >> backups/backups.log
+        @weekly               minecraft    cd /home/minecraft/minecraft-docker && savelog -t -q -n -c 7 backups/backups.log
+    path: /etc/cron.d/minecraft
+    owner: root:root
+    permissions: '0644'
+-   content: |
         # bash_aliases
 
         alias ll='ls -lah --group-directories-first'
