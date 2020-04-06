@@ -1,4 +1,4 @@
-version: '3.1'
+version: '3.7'
 services:
     mc:
         image: itzg/minecraft-server
@@ -7,20 +7,18 @@ services:
             - "25565:25565"
         environment:
             EULA: "TRUE"
-            VERSION: "LATEST"
-#            VERSION: "SNAPSHOT"
-            DIFFICULTY: "normal"
-            MAX_PLAYERS: 5
-            ANNOUNCE_PLAYER_ACHIEVEMENTS: "true"
-            MODE: "spectator"
-            PVP: "false"
-            ONLINE_MODE: "true"
-            MEMORY: "1G"
-            INIT_MEMORY: "2G"
-            MAX_MEMORY: "6G"
+            VERSION: "${MC_VERSION}"
+            DIFFICULTY: "${MC_DIFFICULTY}"
+            MAX_PLAYERS: "${MC_MAX_PLAYERS}"
+            ANNOUNCE_PLAYER_ACHIEVEMENTS: "${MC_ANNOUNCE_ACHIEVEMENTS}"
+            MODE: "${MC_MODE}"
+            PVP: "${MC_PVP}"
+            ONLINE_MODE: "${MC_ONLINE}"
+            MEMORY: "${MC_MEMORY}"
+            INIT_MEMORY: "${MC_MEMORY_INIT}"
+            MAX_MEMORY: "${MC_MEMORY_MAX}"
         volumes:
             - "./data:/data"
         tty: true
         stdin_open: true
-#        restart: "no"
-        restart: "always"
+        restart: "${MC_RESTART}"

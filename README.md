@@ -8,6 +8,12 @@ Provides some basic features like a backup mechanism.
 * Detach from container: `Ctrl + P` `Ctrl + Q`
 
 
+## Start
+
+Create a .env file and change the settings according to your needs. Use the `up.sh` (or simply `docker-compose up`) to start the server.
+
+
+
 ## Backup
 
 The backup mechanism will synchronize the server data folder with another folder ("backups/_work") and will create an archive of that folder. The sychronization of the server will always be incremental but the archive will always contain a full backup of the server.

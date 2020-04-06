@@ -1,5 +1,6 @@
 /backups/*
 /data/*
 core
+.env
 
 !.gitkeep
