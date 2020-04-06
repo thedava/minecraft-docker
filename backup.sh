@@ -2,6 +2,7 @@
 
 rsync -avEh  \
     --delete-after \
+    --delete-excluded \
     --exclude='*.log' \
     --exclude='*.converted' \
     --exclude='*.gz' \
