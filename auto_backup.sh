@@ -13,8 +13,7 @@ else
 fi
 
 now=$(date '+%Y-%m-%d_%H%M%S')
-
-echo "------ "$(date '+%Y-%m-%d %H:%M:%S')
+echo "------ "$(date '+%Y-%m-%d %H:%M:%S')" >>"
 
 echo "Selected mode: $mode"
 echo ""
@@ -34,6 +33,9 @@ fi
 echo "Cleanup old backups"
 find backups/*.bz2 -type f -ctime +5 -exec rm -rf {} \;
 find backups/20* -type d -ctime +5 -exec rm -rf {} \;
+
 echo ""
 echo "done"
+
+echo "------ "$(date '+%Y-%m-%d %H:%M:%S')" <<"
 echo ""
