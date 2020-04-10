@@ -13,7 +13,7 @@ package_reboot_if_required: true
 groups:
   - docker
 
-# Add user(s)
+# Add user minecraft
 users:
   - default
   - name: minecraft
@@ -21,11 +21,14 @@ users:
     shell: /bin/bash
 
 packages:
+  # docker packages
   - apt-transport-https
   - ca-certificates
   - curl
   - gnupg-agent
   - software-properties-common
+
+  # other
   - git
 
 runcmd:
@@ -52,6 +55,7 @@ runcmd:
   - chown minecraft:minecraft -R /home/minecraft/minecraft-docker
 
 write_files:
+  # Minecraft crons (etc/cron.d/minecraft)
 -   content: |
         # m h  dom mon dow    user         command
 
@@ -60,6 +64,8 @@ write_files:
     path: /etc/cron.d/minecraft
     owner: root:root
     permissions: '0644'
+
+  # .bash_aliases of root user
 -   content: |
         # bash_aliases
 
@@ -69,6 +75,8 @@ write_files:
     path: /root/.bash_aliases
     owner: root:root
     permissions: '0644'
+
+  # .bash_aliases of minecraft user
 -   content: |
         # bash_aliases
 
@@ -78,6 +86,7 @@ write_files:
     owner: minecraft:minecraft
     permissions: '0644'
 
+# Reboot (just in case)
 power_state:
   mode: reboot
   message: "Applying changes through reboot now"
