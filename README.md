@@ -13,6 +13,23 @@ Provides some basic features like a backup mechanism.
 Create a .env file and change the settings according to your needs. Use the `up.sh` (or simply `docker-compose up`) to start the server.
 
 
+## Upgrade
+
+### Minecraft
+
+Just delete the *.jar file in your data directory and restart the container. A new server.jar will be downloaded
+
+### Docker image
+
+```sh
+  # Pull latest image from repository
+  docker pull itzg/minecraft-server
+
+  # Start container
+  ./up.sh
+```
+
+
 
 ## Backup
 

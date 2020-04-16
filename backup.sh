@@ -8,5 +8,5 @@ rsync -avEh  \
     --exclude='*.gz' \
     --exclude='core' \
     --exclude='crash-*.txt' \
-    --exclude='minecraft_server*.jar' \
+    --exclude='/*.jar' \
     "./data/" "./backups/_work"
