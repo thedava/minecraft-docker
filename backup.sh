@@ -8,5 +8,6 @@ rsync -avEh  \
     --exclude='*.gz' \
     --exclude='core' \
     --exclude='crash-*.txt' \
+    --exclude='/debug' \
     --exclude='/*.jar' \
     "./data/" "./backups/_work"
