@@ -47,14 +47,38 @@ The backup mechanism will synchronize the server data folder with another folder
 ```
 
 
-## Crontab example
+## Crontab examples
 
-Run a backup at 0:30, 6:30, 12:30, 18:30 and save the output to a log file. Also rotate that log file automatically once every week
 
 ```sh
   # m h  dom mon dow   command
+
+  # Run a backup at 0:30, 6:30, 12:30, 18:30 and save the output to a log file
   30 0,6,12,18 * * *      cd ~/root/minecraft-docker && ./auto_backup.sh >> backups/backups.log
+
+  # Rotate that log file automatically once every week
   @weekly                 cd ~/root/minecraft-docker && savelog -t -q -n -c 7 backups/backups.log
+```
+
+
+```sh
+  # m h  dom mon dow   command
+
+  # Save semi-static data once a day
+  @daily                          crontab -l > ~/root/minecraft-docker/data/_static/crontab
+  @daily                          cd ~/root/minecraft-docker && cp -f .env data/_static/current.env
+
+  # Create backup archive twice a day (0:30 / 12:30)
+  30 0,12         * * *           cd ~/root/minecraft-docker && ./auto_backup.sh >> backups/backups.log
+
+  # Sync backup folder only twice a day (12:30 / 18:30)
+  30 6,18         * * *           cd ~/root/minecraft-docker && ./backup.sh >> backups/backups.log
+
+  # Store the daily backup on external volume (13:00)
+  0  13           * * *           cd ~/root/minecraft-docker/backups && date >> backups.log && cp -vf latest.tar.bz2 /mnt/backups/minecraft/ >> backups.log
+
+  # Rotate backup log every week
+  @weekly                         savelog -t -q -n -c 7 ~/root/minecraft-docker/backups/backups.log
 ```
 
 
