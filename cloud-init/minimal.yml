@@ -27,6 +27,7 @@ packages:
   - curl
   - gnupg-agent
   - software-properties-common
+  - pbzip2
 
   # other
   - git
@@ -72,6 +73,7 @@ write_files:
         alias ll='ls -lah --group-directories-first'
         alias dc='docker-compose'
         alias apt-upgrade='apt-get update && apt-get upgrade --autoremove -y'
+        alias minecraft='su minecraft'
     path: /root/.bash_aliases
     owner: root:root
     permissions: '0644'
