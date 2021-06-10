@@ -52,7 +52,7 @@ runcmd:
   # Checkout minecraft
   - git clone https://github.com/thedava/minecraft-docker.git /home/minecraft/minecraft-docker
   - mkdir /home/minecraft/minecraft-docker/data
-  - chown minecraft:minecraft -R /home/minecraft/minecraft-docker
+  - chown minecraft:minecraft -R /home/minecraft
 
 write_files:
   # Minecraft crons (etc/cron.d/minecraft)
