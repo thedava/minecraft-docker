@@ -52,6 +52,7 @@ runcmd:
   # Checkout minecraft
   - git clone https://github.com/thedava/minecraft-docker.git /home/minecraft/minecraft-docker
   - mkdir /home/minecraft/minecraft-docker/data
+  - cp /home/minecraft/minecraft-docker/example.env /home/minecraft/minecraft-docker/.env
 
   # Fix chown
   - chown minecraft:minecraft -R /home/minecraft
