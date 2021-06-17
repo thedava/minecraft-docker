@@ -26,7 +26,7 @@ Just delete the *.jar file in your data directory and restart the container. A n
   docker pull itzg/minecraft-server
 
   # Start container
-  ./up.sh
+  ./bin/up.sh
 ```
 
 
@@ -37,13 +37,13 @@ The backup mechanism will synchronize the server data folder with another folder
 
 ```sh
   # Create a backup
-  ./auto_backup.sh
+  ./bin/auto_backup.sh
 
   # Create a backup and compress it into an archive (this is the default mode. bz2. will be used)
-  ./auto_backup.sh archive
+  ./bin/auto_backup.sh archive
   
   # Create a separate backup directory
-  ./auto_backup.sh folder
+  ./bin/auto_backup.sh folder
 ```
 
 
@@ -54,7 +54,7 @@ The backup mechanism will synchronize the server data folder with another folder
   # m h  dom mon dow   command
 
   # Run a backup at 0:30, 6:30, 12:30, 18:30 and save the output to a log file
-  30 0,6,12,18 * * *      cd ~/root/minecraft-docker && ./auto_backup.sh >> backups/backups.log
+  30 0,6,12,18 * * *      cd ~/root/minecraft-docker && ./bin/auto_backup.sh >> backups/backups.log
 
   # Rotate that log file automatically once every week
   @weekly                 cd ~/root/minecraft-docker && savelog -t -q -n -c 7 backups/backups.log
@@ -69,10 +69,10 @@ The backup mechanism will synchronize the server data folder with another folder
   @daily                          cd ~/root/minecraft-docker && cp -f .env data/_static/current.env
 
   # Create backup archive twice a day (0:30 / 12:30)
-  30 0,12         * * *           cd ~/root/minecraft-docker && ./auto_backup.sh >> backups/backups.log
+  30 0,12         * * *           cd ~/root/minecraft-docker && ./bin/auto_backup.sh >> backups/backups.log
 
   # Sync backup folder only twice a day (12:30 / 18:30)
-  30 6,18         * * *           cd ~/root/minecraft-docker && ./backup.sh >> backups/backups.log
+  30 6,18         * * *           cd ~/root/minecraft-docker && ./bin/backup.sh >> backups/backups.log
 
   # Store the daily backup on external volume (13:00)
   0  13           * * *           cd ~/root/minecraft-docker/backups && date >> backups.log && cp -vf latest.tar.bz2 /mnt/backups/minecraft/ >> backups.log
