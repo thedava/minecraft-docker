@@ -19,7 +19,7 @@ echo "Selected mode: $mode"
 echo ""
 
 echo "Starting backup..."
-./backup.sh
+./bin/backup.sh
 
 if [[ $mode = "archive" ]]; then
     echo "Creating archive"
