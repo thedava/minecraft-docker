@@ -27,9 +27,9 @@ packages:
   - curl
   - gnupg-agent
   - software-properties-common
-  - pbzip2
 
   # other
+  - pbzip2
   - git
 
 runcmd:
